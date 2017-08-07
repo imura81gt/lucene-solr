@@ -33,7 +33,7 @@ import java.util.List;
 import org.apache.lucene.analysis.ja.dict.CharacterDefinition;
 
 public class UnknownDictionaryBuilder {
-  private static final String NGRAM_DICTIONARY_ENTRY = "NGRAM,5,5,-32768,記号,一般,*,*,*,*,*,*,*";
+  private static final String NGRAM_DICTIONARY_ENTRY = "NGRAM,5,5,-32768,記号,一般,*,*,*,*,*,*,*,*";
   
   private String encoding = "euc-jp";
   
@@ -71,7 +71,7 @@ public class UnknownDictionaryBuilder {
     while ((line = lineReader.readLine()) != null) {
       // note: unk.def only has 10 fields, it simplifies the writer to just append empty reading and pronunciation,
       // even though the unknown dictionary returns hardcoded null here.
-      final String[] parsed = CSVUtil.parse(line + ",*,*"); // Probably we don't need to validate entry
+      final String[] parsed = CSVUtil.parse(line + ",*,*,*"); // Probably we don't need to validate entry
       lines.add(parsed);
     }
     

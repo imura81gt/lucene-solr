@@ -32,19 +32,22 @@
   <property name="ivy.default.configuration" value="default"/>
   <import file="../analysis-module-build.xml"/> 
 
-  <!-- default configuration: uses mecab-ipadic -->
+  <!-- default configuration: uses mecab-ipadic 
   <property name="ipadic.type" value="ipadic"/>
   <property name="ipadic.version" value="mecab-ipadic-2.7.0-20070801" />
+  -->
 
   <!-- alternative configuration: uses mecab-naist-jdic
   <property name="ipadic.type" value="naist"/>
   <property name="ipadic.version" value="mecab-naist-jdic-0.6.3b-20111013" />
   -->
+  <property name="ipadic.type" value="unidic"/>
+  <property name="ipadic.version" value="unidic-mecab-2.1.2_src" />
   
-  <property name="dict.src.file" value="${ipadic.version}.tar.gz" />
+  <property name="dict.src.file" value="${ipadic.version}.zip" />
   <property name="dict.src.dir" value="${build.dir}/${ipadic.version}" />
-  <property name="dict.encoding" value="euc-jp"/>
-  <property name="dict.format" value="ipadic"/>
+  <property name="dict.encoding" value="utf-8"/>
+  <property name="dict.format" value="UNIDIC"/>
   <property name="dict.normalize" value="false"/>
   <property name="dict.target.dir" location="${resources.dir}"/>
 
@@ -60,8 +63,7 @@
   <target name="download-dict" depends="ivy-availability-check,ivy-fail,ivy-configure" unless="dict.available">
      <ivy:retrieve pattern="${build.dir}/${dict.src.file}" conf="${ipadic.type}" symlink="${ivy.symlink}"/>
      <!-- TODO: we should checksum too -->
-     <gunzip src="${build.dir}/${dict.src.file}"/>
-     <untar src="${build.dir}/${ipadic.version}.tar" dest="${build.dir}"/>
+     <unzip src="${build.dir}/${dict.src.file}" dest="${build.dir}"/>
   </target>
 
   <path id="tools.dependencies">

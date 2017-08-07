@@ -111,7 +111,7 @@ public abstract class BinaryDictionaryWriter {
     }
 
     assert leftId == rightId;
-    assert leftId < 4096; // there are still unused bits
+    assert leftId < 8192; // there are still unused bits
     // add pos mapping
     int toFill = 1+leftId - posDict.size();
     for (int i = 0; i < toFill; i++) {
