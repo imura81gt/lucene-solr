@@ -54,7 +54,7 @@ public abstract class BinaryDictionaryWriter {
   public int put(String[] entry) {
     short leftId = Short.parseShort(entry[1]);
     short rightId = Short.parseShort(entry[2]);
-    short wordCost = Short.parseShort(entry[3]);
+    int wordCost = Integer.parseInt(entry[3]);
     
     StringBuilder sb = new StringBuilder();
     
@@ -123,7 +123,7 @@ public abstract class BinaryDictionaryWriter {
     posDict.set(leftId, fullPOSData);
     
     buffer.putShort((short)(leftId << 3 | flags));
-    buffer.putShort(wordCost);
+    buffer.putInt(wordCost);
 
     if ((flags & BinaryDictionary.HAS_BASEFORM) != 0) {
       assert baseForm.length() < 16;
